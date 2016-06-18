@@ -4,7 +4,7 @@
 
 --人员信息表
 create table Staff(
-    Id int not null primary key  identity(1,1),
+    ID int not null primary key  identity(1,1),
     Name varchar(32) not null,
     Department varchar(32),
     IsOnJob char(1) default 'Y', -- 是否在职 Y/N
