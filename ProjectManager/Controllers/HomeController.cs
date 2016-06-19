@@ -15,10 +15,18 @@ namespace ProjectManager.Controllers
 			IQueryable<Staff> staffs = mdb.Staffs;
 			int num = staffs.Count();
 			ViewBag.StaffCount = num;
-			return View();
-		}
 
-		public ActionResult About()
+            return View();
+		}
+        public ActionResult ViviaTest()
+        {
+            ModelDbContext mdb = new ModelDbContext();
+            IQueryable<PBGroup> pbGroups = mdb.PBGroups;
+            PBGroup tmp= pbGroups.First();
+            ViewBag.pbGroupName = tmp.GroupName;
+            return View();
+        }
+        public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
 

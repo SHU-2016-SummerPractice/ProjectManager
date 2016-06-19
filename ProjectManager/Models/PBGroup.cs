@@ -6,12 +6,10 @@ using System.Web;
 
 namespace ProjectManager.Models
 {
-	public class Staff
-	{
-		[Key]
+    public class PBGroup
+    {
+        [Key]
         public int Id { get; set; }
-		public string Name { get; set; }
-		public string Department { get; set; }
-		public string IsOnJob { get; set; }
-	}
+        public string GroupName { get; set; }
+    }
 }
