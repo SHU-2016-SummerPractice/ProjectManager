@@ -21,9 +21,9 @@ namespace ProjectManager.Controllers
         public ActionResult ViviaTest()
         {
             ModelDbContext mdb = new ModelDbContext();
-            IQueryable<PBGroup> pbGroups = mdb.PBGroups;
-            PBGroup tmp= pbGroups.First();
-            ViewBag.pbGroupName = tmp.GroupName;
+            IQueryable<PBInfo> pbInfos = mdb.PBInfos;
+			PBInfo tmp = pbInfos.First();
+            ViewBag.pbInfos = tmp.PBNo;
             return View();
         }
         public ActionResult About()
