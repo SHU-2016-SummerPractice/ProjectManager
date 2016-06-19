@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjectManager.Models;
 
 namespace ProjectManager.Controllers
 {
@@ -10,6 +11,10 @@ namespace ProjectManager.Controllers
 	{
 		public ActionResult Index()
 		{
+			ModelDbContext mdb = new ModelDbContext();
+			IQueryable<Staff> staffs = mdb.Staffs;
+			int num = staffs.Count();
+			ViewBag.StaffCount = num;
 			return View();
 		}
 
