@@ -13,12 +13,16 @@ namespace ProjectManager.Models
 		public DbSet<Staff> Staffs { get; set; }
 		public DbSet<PBInfo> PBInfos { get; set; }
 		public DbSet<PBGroup> PBGroups { get; set; }
+        public DbSet<Domain> Domains { get; set; }
+        public DbSet<ProjectInfo> ProjectInfoes { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			//将模型映射到自己指定的表
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<Staff>().ToTable("Staff"));
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PBInfo>().ToTable("PBInfo"));
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PBGroup>().ToTable("PBGroup"));
+            modelBuilder.Configurations.Add(new EntityTypeConfiguration<Domain> ().ToTable("Domain"));
+            modelBuilder.Configurations.Add ( new EntityTypeConfiguration<ProjectInfo>().ToTable("ProjectInfo"));
 
             base.OnModelCreating(modelBuilder);
 		}
