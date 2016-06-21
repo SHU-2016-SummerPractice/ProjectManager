@@ -179,7 +179,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
-    <Compile Include="Models\PBGroup.cs" />
     <Compile Include="Models\PBInfo.cs" />
     <Compile Include="Models\ProjectInfo.cs" />
     <Compile Include="Models\Staff.cs" />

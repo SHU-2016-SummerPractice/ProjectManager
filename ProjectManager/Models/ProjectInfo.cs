@@ -11,7 +11,6 @@ namespace ProjectManager.Models
         [Key]
         public int ID { get; set; }
         public int ProjectID { get; set; }
-        public int? GroupId { get; set; }
         public int? LO { get; set; }
         public string MISStatus { get; set; }
         public string IsLanuched { get; set; }

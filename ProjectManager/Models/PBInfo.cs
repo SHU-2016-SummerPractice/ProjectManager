@@ -10,7 +10,7 @@ namespace ProjectManager.Models
 	{
 		[Key]
 		public int Id { get; set; }
-		public int? GroupId { get; set; }
+		public int? ProjectID { get; set; }
 
 		public string PBNo { get; set; }
 		public string PBLink { get; set; }
