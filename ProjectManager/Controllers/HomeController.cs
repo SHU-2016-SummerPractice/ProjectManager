@@ -21,9 +21,9 @@ namespace ProjectManager.Controllers
         public ActionResult ViviaTest()
         {
             ModelDbContext mdb = new ModelDbContext();
-            IQueryable<PBInfo> pbInfos = mdb.PBInfos;
-			PBInfo tmp = pbInfos.First();
-            ViewBag.pbInfos = tmp.PBNo;
+            IQueryable<ProjectInfo> projectInfos = mdb.ProjectInfoes;
+            ProjectInfo tmp = projectInfos.First();
+            ViewBag.pbInfos = tmp.IsLanuched;
             return View();
         }
         public ActionResult About()

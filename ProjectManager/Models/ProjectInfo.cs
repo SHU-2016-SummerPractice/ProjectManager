@@ -13,8 +13,8 @@ namespace ProjectManager.Models
         public int ProjectID { get; set; }
         public int? GroupId { get; set; }
         public int? LO { get; set; }
-        public string? MISStatus { get; set; }
-        public string? IsLanuched { get; set; }
+        public string MISStatus { get; set; }
+        public string IsLanuched { get; set; }
         public int? CNPMId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

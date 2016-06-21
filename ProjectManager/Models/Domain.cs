@@ -13,8 +13,8 @@ namespace ProjectManager.Models
         public int StaffId { get; set; }
         public int? Percentage { get; set; }
         public int? WorkLoadPercentage { get; set; }
-        public string? Project { get; set; }
-        public string? Memo { get; set; }
+        public string Project { get; set; }
+        public string Memo { get; set; }
 
     }
 }
