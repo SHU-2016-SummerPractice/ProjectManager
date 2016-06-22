@@ -11,9 +11,11 @@
     {
         @RenderSection("WorkPercentageIndex", required: false)
     }
-
+    @if (IsSectionDefined("WorkHourIndex"))
+    {
+        @RenderSection("WorkHourIndex", required: false)
+    }
     
-
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -70,7 +72,9 @@ Countly.q.push(['track_sessions']);
 Countly.q.push(['track_pageview']);
 Countly.q.push(['track_clicks']);
 Countly.q.push(['track_errors']);
-Countly.q.push(['track_links']);
+    //Countly.q.push(['track_links']);
+    //track_link has problems with DataTales, then click page buttun, page will auto refresh
+    //by wolfogre
 Countly.q.push(['track_forms']);
 
 //load countly script asynchronously
