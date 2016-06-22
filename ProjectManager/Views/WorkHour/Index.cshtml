@@ -1,4 +1,5 @@
-﻿
+﻿@using ProjectManager.Models
+
 @{
     ViewBag.Title = "Work Hour";
 }
@@ -16,6 +17,30 @@
         } );
     </script>
 }
+<div id="datatable-div" style="visibility: hidden">
+    <table id="datatable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Staff Id</th>
+                <th>Start Date</th>
+                <th>Work Type</th>
+                <th>Work Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (WorkHour d in ViewBag.workHours)
+            {
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>@d.StartDate</td>
+                    <td>@d.WorkType</td>
+                    <td>@d.WorkContent</td>
+                </tr>}
+        </tbody>
+    </table>
+</div>
+
+
 
 
 
