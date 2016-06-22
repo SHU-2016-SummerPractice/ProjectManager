@@ -28,14 +28,14 @@ namespace ProjectManager.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} Must Contain At Least {2} Characters。", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "新密码")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The Password And Confirmation Password Do Not Match")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -43,18 +43,18 @@ namespace ProjectManager.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "当前密码")]
+        [Display(Name = "Current Password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} Must Contain At Least {2} Characters。", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "新密码")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The Password And Confirmation Password Do Not Match")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -62,7 +62,7 @@ namespace ProjectManager.Models
     {
         [Required]
         [Phone]
-        [Display(Name = "电话号码")]
+        [Display(Name = "Telephone Number")]
         public string Number { get; set; }
     }
 
@@ -70,11 +70,11 @@ namespace ProjectManager.Models
     {
         [Required]
         [Display(Name = "代码")]
-        public string Code { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "电话号码")]
+        [Display(Name = "Telephone Number")]
         public string PhoneNumber { get; set; }
     }
 
