@@ -7,6 +7,12 @@
     <title>@ViewBag.Title - PMS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @if (IsSectionDefined("WorkPercentageIndex"))
+    {
+        @RenderSection("WorkPercentageIndex", required: false)
+    }
+
+    
 
 </head>
 <body>
@@ -43,7 +49,9 @@
     </footer>
 </div>
 
-@Scripts.Render("~/bundles/jquery")
+@*@Scripts.Render("~/bundles/jquery")*@
+@*Conflict with DataTables*@
+
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
 </body>
