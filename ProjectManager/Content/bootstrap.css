@@ -6815,27 +6815,3 @@ td.visible-print {
     display: none !important;
   }
 }
-
-.homei1,
-.homei2,
-.homei3,
-.homei4{
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-  float: left;
-  width: 25%;
-}
-.homei1{
-    background-color:;
-}
-.homei2{
-    background-color:#f4f615;
-}
-.homei3{
-    background-color:#0ae530;
-}
-.homei4{
-    background-color:#ae2e8c;
-}
