@@ -15,6 +15,10 @@
     {
         @RenderSection("WorkHourIndex", required: false)
     }
+    @if (IsSectionDefined("LaunchedIndex"))
+    {
+        @RenderSection("LaunchedIndex", required: false)
+    }
     
 </head>
 <body>

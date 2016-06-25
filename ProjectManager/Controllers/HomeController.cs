@@ -28,8 +28,6 @@ namespace ProjectManager.Controllers
         }
         public ActionResult About()     //About界面
         {
-			ViewBag.Message = "Your application description page.";
-
 			return View();
 		}
 

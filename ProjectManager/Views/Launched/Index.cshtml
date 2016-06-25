@@ -1,7 +1,59 @@
-﻿
+﻿@using ProjectManager.Models
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+@section LaunchedIndex {
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script type="text/javascript" class="init">
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+            $('#datatable-div').css("visibility", "visible");
+        } );
+    </script>
+}
+<h2>Launched</h2>
+<div id="datatable-div" style="visibility: hidden">
+    <table id="datatable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <!--表头-->
+                <th>ProjectID</th>
+                <th>LO</th>
+                <th>MISStatus</th>
+                <th>IsLanuched</th>
+                <th>CNPMId</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>ReleaseDate</th>
+                <th>DelayReleaseDate</th>
+                <th>LanuchDate</th>
+                <th>DelayLanuchDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProjectInfo d in ViewBag.launcheds)
+            {
+                <tr>
+                    <td>@d.ProjectID</td>
+                    <td>@d.LO</td>
+                    <td>@d.MISStatus</td>
+                    <td>@d.IsLanuched</td>
+                    <td>@d.CNPMId</td>
+                    <td>@d.StartDate</td>
+                    <td>@d.EndDate</td>
+                    <td>@d.ReleaseDate</td>
+                    <td>@d.DelayReleaseDate</td>
+                    <td>@d.LanuchDate</td>
+                    <td>@d.DelayLanuchDate</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 
