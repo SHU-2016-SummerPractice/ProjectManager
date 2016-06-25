@@ -421,6 +421,7 @@ small {
   font-size: 85%;
 }
 
+
 cite {
   font-style: normal;
 }
@@ -4934,9 +4935,9 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #f5bfee;
 }
-
+#f5b9ee
 .jumbotron h1 {
   line-height: 1;
   color: inherit;
@@ -6813,4 +6814,28 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+.homei1,
+.homei2,
+.homei3,
+.homei4{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+  width: 25%;
+}
+.homei1{
+    background-color:;
+}
+.homei2{
+    background-color:#f4f615;
+}
+.homei3{
+    background-color:#0ae530;
+}
+.homei4{
+    background-color:#ae2e8c;
 }

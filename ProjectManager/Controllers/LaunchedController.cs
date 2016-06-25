@@ -14,7 +14,8 @@ namespace ProjectManager.Controllers
         {
             ModelDbContext mdb = new ModelDbContext();
             IQueryable<ProjectInfo>  launcheds = mdb.ProjectInfoes;
-            IEnumerable<ProjectInfo> launchedsQuery =from projectInfo in launcheds where projectInfo.IsLanuched=="Y" select projectInfo;
+            IEnumerable<ProjectInfo> launchedsQuery =from projectInfo in launcheds
+                                                     where projectInfo.IsLanuched=="Y" select projectInfo;
             ViewBag.launcheds = launchedsQuery;
             return View();
         }
