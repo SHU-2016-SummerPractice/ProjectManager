@@ -191,7 +191,15 @@
     <Content Include="Content\About.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\projectStyle.css" />
     <Content Include="Content\ic_beach_access_black_48dp.png" />
+    <Content Include="Content\img\project_red.png" />
+    <Content Include="Content\img\project_blue.png" />
+    <Content Include="Content\img\project_green.png" />
+    <Content Include="Content\img\project_darkBlue.png" />
+    <Content Include="Content\img\project_purple.png" />
+    <Content Include="Content\js\jquery-3.0.0.min.js" />
+    <Content Include="Content\js\ProjectJS.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +259,8 @@
     <Content Include="Views\WorkHour\Index.cshtml" />
     <Content Include="Views\WorkPercetage\Index.cshtml" />
     <Content Include="Views\Home\ViviaTest.cshtml" />
+    <Content Include="Views\Project\_addProject.cshtml" />
+    <Content Include="Views\Project\_addPB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

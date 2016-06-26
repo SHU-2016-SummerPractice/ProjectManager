@@ -19,6 +19,10 @@
     {
         @RenderSection("LaunchedIndex", required: false)
     }
+    @if ( IsSectionDefined("ProjectIndex" ))
+    {
+        @RenderSection("ProjectIndex",required: false)
+    }
     
 </head>
 <body>

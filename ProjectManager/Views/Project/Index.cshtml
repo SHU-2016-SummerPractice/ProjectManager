@@ -1,6 +1,37 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Project";
 }
 
-<h2>Index</h2>
+@section ProjectIndex{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/projectStyle.css" rel="stylesheet" />
+}
+<h2>Project</h2>
+<div class="row">
+    <div class="col-xs-2 contour">
+        @*左边状态栏*@
+        <div>
+            <h5>Project Status</h5>
+        </div>
+        <div>
+            <img src="~/Content/img/project_red.png" alt="Release" class="pic" /> 
+            <a href="#" class="project-status">Release</a> <br />
+            <img src="~/Content/img/project_blue.png" alt="Alternate Text" class="pic"/> 
+            <a href="#" class="project-status">Load</a> <br />
+            <img src="~/Content/img/project_green.png" alt="Alternate Text" class="pic"/> 
+            <a href="#" class="project-status">Coding</a> <br />
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <div class="col-xs-5 contour" style="margin:0;">
+        @*中间project栏*@
+    </div>
+    <div class="col-xs-4 contour">
+        @*右边pb栏目*@
+    </div>
+</div>
+<script src="~/Content/js/jquery-3.0.0.min.js"></script>
+<script src="~/Content/js/ProjectJS.js"></script>
