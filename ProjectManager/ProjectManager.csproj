@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DataAdeapter.cs" />
     <Compile Include="Models\Domain.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -200,6 +201,12 @@
     <Content Include="Content\img\project_purple.png" />
     <Content Include="Content\js\jquery-3.0.0.min.js" />
     <Content Include="Content\js\ProjectJS.js" />
+    <Content Include="Content\handsontable.full.css" />
+    <Content Include="Content\ic_beach_access_black_48dp.png" />
+    <Content Include="Content\ic_keyboard_arrow_left_black_48dp_2x.png" />
+    <Content Include="Content\ic_keyboard_arrow_right_black_48dp_2x.png" />
+    <Content Include="Scripts\handsontable.full.js" />
+    <Content Include="Scripts\workhours.handsontable.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
