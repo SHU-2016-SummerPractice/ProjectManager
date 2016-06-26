@@ -21,7 +21,6 @@ namespace ProjectManager.Models
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PBInfo>().ToTable("PBInfo"));
             modelBuilder.Configurations.Add(new EntityTypeConfiguration<Domain> ().ToTable("Domain"));
             modelBuilder.Configurations.Add ( new EntityTypeConfiguration<ProjectInfo>().ToTable("ProjectInfo"));
-
             base.OnModelCreating(modelBuilder);
 		}
 	}
