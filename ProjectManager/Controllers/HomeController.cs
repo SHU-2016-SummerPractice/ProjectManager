@@ -13,9 +13,17 @@ namespace ProjectManager.Controllers
 		{
 			ModelDbContext mdb = new ModelDbContext();
 			IQueryable<Staff> staffs = mdb.Staffs;
-			int num = staffs.Count();
-			ViewBag.StaffCount = num;
+            IEnumerable<int> staffsCount = from staff in staffs select staffs.Count();
+			ViewBag.StaffCount = staffsCount.First();
 
+            IQueryable<ProjectInfo> launcheds = mdb.ProjectInfoes;
+
+            IQueryable<ProjectInfo> launchedsCount = mdb.ProjectInfoes;
+            int projectInfoCount = (from projectInfo in launcheds
+                                                 where projectInfo.IsLanuched == "Y"
+                                                 select projectInfo).Count();
+            ViewBag.ProjectInfoCount = projectInfoCount;
+            
             return View();
 		}
         public ActionResult ViviaTest()
@@ -26,10 +34,8 @@ namespace ProjectManager.Controllers
             ViewBag.pbInfos = tmp.IsLanuched;
             return View();
         }
-        public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-
+        public ActionResult About()     //About界面
+        {
 			return View();
 		}
 

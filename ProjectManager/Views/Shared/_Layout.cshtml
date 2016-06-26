@@ -7,7 +7,19 @@
     <title>@ViewBag.Title - PMS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @if (IsSectionDefined("WorkPercentageIndex"))
+    {
+        @RenderSection("WorkPercentageIndex", required: false)
+    }
+    @if (IsSectionDefined("WorkHourIndex"))
+    {
+        @RenderSection("WorkHourIndex", required: false)
+    }
+    @if (IsSectionDefined("LaunchedIndex"))
+    {
+        @RenderSection("LaunchedIndex", required: false)
+    }
+    
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,15 +47,17 @@
         </div>
     </div>
 </div>
-<div class="container body-content">
+<<div class="container body-content">
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.Year - PMS</p>
+        <p style="text-align:center">&copy; @DateTime.Now.Year - PMS</p>
     </footer>
 </div>
 
-@Scripts.Render("~/bundles/jquery")
+@*@Scripts.Render("~/bundles/jquery")*@
+@*Conflict with DataTables*@
+
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
 </body>
@@ -62,7 +76,9 @@ Countly.q.push(['track_sessions']);
 Countly.q.push(['track_pageview']);
 Countly.q.push(['track_clicks']);
 Countly.q.push(['track_errors']);
-Countly.q.push(['track_links']);
+    //Countly.q.push(['track_links']);
+    //track_link has problems with DataTales, then click page buttun, page will auto refresh
+    //by wolfogre
 Countly.q.push(['track_forms']);
 
 //load countly script asynchronously

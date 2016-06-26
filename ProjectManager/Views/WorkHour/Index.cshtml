@@ -1,7 +1,46 @@
-﻿
+﻿@using ProjectManager.Models
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Work Hour";
 }
 
-<h2>Index</h2>
+<h2>Work Hour</h2>
+
+@section WorkHourIndex {
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script type="text/javascript" class="init">
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+            $('#datatable-div').css("visibility", "visible");
+        } );
+    </script>
+}
+<div id="datatable-div" style="visibility: hidden">
+    <table id="datatable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Staff Id</th>
+                <th>Start Date</th>
+                <th>Work Type</th>
+                <th>Work Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (WorkHour d in ViewBag.workHours)
+            {
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>@d.StartDate</td>
+                    <td>@d.WorkType</td>
+                    <td>@d.WorkContent</td>
+                </tr>}
+        </tbody>
+    </table>
+</div>
+
+
+
+
 

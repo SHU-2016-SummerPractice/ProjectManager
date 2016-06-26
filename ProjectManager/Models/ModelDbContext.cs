@@ -11,9 +11,10 @@ namespace ProjectManager.Models
 	{
 		//模型上下文
 		public DbSet<Staff> Staffs { get; set; }
-		public DbSet<PBInfo> PBInfos { get; set; }
+		public DbSet<PBInfo> PbInfoes { get; set; }
         public DbSet<Domain> Domains { get; set; }
         public DbSet<ProjectInfo> ProjectInfoes { get; set; }
+        public DbSet<WorkHour> WorkHours { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			//将模型映射到自己指定的表
@@ -21,6 +22,7 @@ namespace ProjectManager.Models
 			modelBuilder.Configurations.Add(new EntityTypeConfiguration<PBInfo>().ToTable("PBInfo"));
             modelBuilder.Configurations.Add(new EntityTypeConfiguration<Domain> ().ToTable("Domain"));
             modelBuilder.Configurations.Add ( new EntityTypeConfiguration<ProjectInfo>().ToTable("ProjectInfo"));
+            modelBuilder.Configurations.Add(new EntityTypeConfiguration<WorkHour>().ToTable("WorkHours"));
             base.OnModelCreating(modelBuilder);
 		}
 	}
