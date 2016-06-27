@@ -195,6 +195,7 @@
     <Content Include="Content\css\buttons.css" />
     <Content Include="Content\css\projectStyle.css" />
     <Content Include="Content\ic_beach_access_black_48dp.png" />
+    <Content Include="Content\img\addPB.png" />
     <Content Include="Content\img\project_red.png" />
     <Content Include="Content\img\project_blue.png" />
     <Content Include="Content\img\project_green.png" />
