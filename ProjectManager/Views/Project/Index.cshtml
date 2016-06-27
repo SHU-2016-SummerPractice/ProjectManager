@@ -42,16 +42,14 @@
                     <div class="modal-body">
                         @*步骤页面页面一为填写PB*@
                         <div class="form-horizontal" id="add-pb-message">
-                            <div class="form-group">
+                            <div class="form-group" id="div-pb-NO">
                                 <label for="pb-NO" class="control-label col-sm-3">PBNO:</label>
                                 <input type="text" class="form-control col-sm-5" id="pb-NO" />
-                                <div style="position:relative;left:10px;top:4px;">
-                                    <i class="fa fa-lg fa-trash" aria-hidden="true"></i>
-                                </div> 
+                                <i class="fa fa-lg fa-trash delete-parent-div" aria-hidden="true" style="cursor: pointer;position:relative;left:10px;top:4px;"></i>
                             </div>
                             <div class="form-group">
-                                <a href="#" class="button button-block button-rounded button-default">+</a>
-                            </div>
+                                <a href="#" class="button button-block button-rounded button-default" id="add-pb">+</a>
+                            </div> 
                         </div>
                         @*填写project信息*@
                         <form class="form-horizontal" id="add-project-message" >
@@ -77,8 +75,8 @@
                         <button type="button" class="btn btn-primary" id="next-project">Next</button>
                     </div>
                     <div class="modal-footer" id="submit-project">
-                        <button type="button" class="btn btn-default" id="back-project">Back</button>
-                        <button type="button" class="btn btn-primary" id="submit-project">Submit</button>
+                        <button type="button" class="btn btn-primary" id="back-project">Back</button>
+                        <button type="button" class="btn btn-primary" id="button-submit-project">Submit</button>
                     </div>
                 </div>
             </div>
