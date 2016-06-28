@@ -1,0 +1,24 @@
+﻿.pm-left-item {
+    left:-1em;
+}
+.pm-right-item{
+    right:-1em;
+}
+.pm-btn-box{
+    height:20%;
+    width:8%;
+    position:fixed;
+    top:40%;
+    z-index:1000;
+}
+.pm-btn-box:hover{
+    cursor:pointer;
+}
+
+.table-loading{
+    width : 200px;
+    height: 200px;
+    position:fixed;
+    top:40%;
+    left:40%;
+}

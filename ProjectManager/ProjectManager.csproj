@@ -210,6 +210,7 @@
     <Content Include="Content\js_file\jquery-3.0.0.min.js" />
     <Content Include="Content\js_file\jquery.nicescroll.js" />
     <Content Include="Content\js_file\projectJS.js" />
+    <Content Include="Content\work-hours.css" />
     <Content Include="Scripts\handsontable.full.js" />
     <Content Include="Scripts\workhours.handsontable.js" />
     <Content Include="favicon.ico" />
