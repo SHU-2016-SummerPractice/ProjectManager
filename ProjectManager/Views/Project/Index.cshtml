@@ -83,8 +83,17 @@
         </div>
 
     </div>
-    <div class="col-xs-5 contour" style="margin:0;">
+    <div class="col-xs-5 contour" style="margin:0; padding:0 10px 0 10px;overflow:scroll;" id="show-project">
+        @*将做好的project以不同panel形式展开*@
         @*中间project栏*@
+        @*@Ajax.ActionLink(" ","ShowProject", "Project", new AjaxOptions()
+       {
+           InsertionMode=InsertionMode.InsertAfter,
+           UpdateTargetId="show-project"
+       })*@
+       @{
+           Html.RenderAction("_showProject", "Project");
+       }
     </div>
     <div class="col-xs-4 contour">
         @*右边pb栏目*@

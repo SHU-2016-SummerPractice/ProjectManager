@@ -276,6 +276,7 @@
     <Content Include="Views\WorkPercetage\Index.cshtml" />
     <Content Include="Views\Home\ViviaTest.cshtml" />
     <Content Include="Views\Project\_addPB.cshtml" />
+    <Content Include="Views\Project\_showProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
