@@ -27,3 +27,16 @@ text-decoration:none;
 a:active{
 text-decoration:none;
 }
+
+.addPB{
+    height:30px;
+    width:30px;
+}
+
+/*添加project弹出层*/
+#add-project-message{
+    display:none;
+}
+#submit-project{
+    display:none;
+}

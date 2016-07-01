@@ -27,9 +27,11 @@ namespace ProjectManager.Controllers
             return View();
         }
 
-        public PartialViewResult AddProject()
+        public ActionResult _showProject()
         {
-            return PartialView("Project/_addProject");
+            List<ProjectInfo> projectInfo = mdc.ProjectInfoes.ToList();
+
+            return View(projectInfo);
         }
     }
 }
