@@ -18,8 +18,8 @@ namespace ProjectManager.Controllers
         public ActionResult Project()
         {
 
-	        //if (!User.Identity.IsAuthenticated)
-			//	return Redirect("/Account/Login?returnUrl=/Download/Project");
+	        if (!User.Identity.IsAuthenticated)
+				return Redirect("/Account/Login?returnUrl=/Download/Project");
 
 			HSSFWorkbook book = new HSSFWorkbook();
 			ISheet sheet = book.CreateSheet("Project");
