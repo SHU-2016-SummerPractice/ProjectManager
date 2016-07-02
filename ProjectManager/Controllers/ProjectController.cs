@@ -33,5 +33,32 @@ namespace ProjectManager.Controllers
 
             return View(projectInfo);
         }
+
+        public ActionResult _showPB()
+        {
+            return View();
+        }
+        public ActionResult _DetailProject()
+        {
+            List<DetailProject> detailProject = null;
+            List<ProjectInfo> projectInfo = mdc.ProjectInfoes.ToList();
+            List<PBInfo> pbInfo = mdc.PbInfoes.ToList();
+            var detailList= from m in projectInfo join n in pbInfo on m.ProjectID equals n.ProjectID select new DetailProject { ProjectID = m.ProjectID, LO = m.LO, IsLanuched = m.IsLanuched, CNPMId = m.CNPMId, EndDate = m.EndDate, DelayReleaseDate = m.DelayReleaseDate, DelayLanuchDate = m.DelayLanuchDate, PBName = n.PBName };
+            detailProject =  detailList.ToList<DetailProject>();
+
+            return View(detailProject);
+        }
+
+        public string SaveProjectMessage(string ProjectID, string optionSelected, string lanuchDate)
+        {
+            string result="success";
+            int id = Convert.ToInt32(ProjectID);
+            var newProject = mdc.ProjectInfoes.Where(u => u.ProjectID == id ).FirstOrDefault();
+            newProject.MISStatus = optionSelected;
+            DateTime datetime=DateTime.ParseExact(lanuchDate, "yyyy/MM/dd HH:mm:ss", null);
+            newProject.LanuchDate = datetime;
+            mdc.SaveChanges();
+            return result;
+        }
     }
 }

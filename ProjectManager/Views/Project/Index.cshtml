@@ -8,97 +8,128 @@
     <link href="~/Content/css_file/projectStyle.css" rel="stylesheet" />
     <link href="~/Content/css_file/buttons.css" rel="stylesheet" />
     <link href="~/Content/css_file/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 }
-<h2>Project</h2>
-<div class="row">
-    <div class="col-xs-2 contour">
-        @*左边状态栏*@
-        <div>
-            <h5>Project Status</h5>
-        </div>
-        <div>
-            <img src="~/Content/img_file/project_red.png" alt="Release" class="pic" /> 
+<style>
+   /*.body-content{
+       margin:0 0;
+       padding:0;
+   }*/
+
+</style>
+<div>
+    @*左边状态栏*@
+    <div>
+        <h5>Project Status</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="~/Content/img_file/project_red.png" alt="Release" class="pic" />
             <a href="#" class="project-status">Release</a> &nbsp;@ViewBag.releaseCount
-            <br />
-            <img src="~/Content/img_file/project_blue.png" alt="Alternate Text" class="pic"/> 
-            <a href="#" class="project-status">Load</a> &nbsp;@ViewBag.loadCount<br />
-            <img src="~/Content/img_file/project_green.png" alt="Alternate Text" class="pic"/> 
-            <a href="#" class="project-status">Coding</a> &nbsp;@ViewBag.codingCount <br />
+            &nbsp;&nbsp;
+            <img src="~/Content/img_file/project_blue.png" alt="Alternate Text" class="pic" />
+            <a href="#" class="project-status">Load</a> &nbsp;@ViewBag.loadCount
+            &nbsp;&nbsp;
+            <img src="~/Content/img_file/project_green.png" alt="Alternate Text" class="pic" />
+            <a href="#" class="project-status">Coding</a> &nbsp;@ViewBag.codingCount
         </div>
-        <div id="add">
+        <div id="add" class="col-sm-offset-1 col-sm-3">
             @*两个按钮，用来添加PB和project*@
             <a href="#" class="button button-3d button-action button-pill" data-toggle="modal" data-target="#exampleModal" id="open-add-project">Add Project</a>
-            <a href="#" class="button button-3d button-action button-pill">Add PB</a>
-
         </div>
-        @*添加新的Project*@
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">New Project</h4>
-                    </div>
-                    <div class="modal-body">
-                        @*步骤页面页面一为填写PB*@
-                        <div class="form-horizontal" id="add-pb-message">
-                            <div class="form-group" id="div-pb-NO">
-                                <label for="pb-NO" class="control-label col-sm-3">PBNO:</label>
-                                <input type="text" class="form-control col-sm-5" id="pb-NO" />
-                                <i class="fa fa-lg fa-trash delete-parent-div" aria-hidden="true" style="cursor: pointer;position:relative;left:10px;top:4px;"></i>
-                            </div>
-                            <div class="form-group">
-                                <a href="#" class="button button-block button-rounded button-default" id="add-pb">+</a>
-                            </div> 
+    </div>
+
+    @*添加新的Project*@
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">New Project</h4>
+                </div>
+                <div class="modal-body">
+                    @*步骤页面页面一为填写PB*@
+                    <div class="form-horizontal" id="add-pb-message">
+                        <div class="form-group" id="div-pb-NO">
+                            <label for="pb-NO" class="control-label col-sm-3">PBNO:</label>
+                            <input type="text" class="form-control col-sm-5" id="pb-NO" />
+                            <i class="fa fa-lg fa-trash delete-parent-div" aria-hidden="true" style="cursor: pointer;position:relative;left:10px;top:4px;"></i>
                         </div>
-                        @*填写project信息*@
-                        <form class="form-horizontal" id="add-project-message" >
-                            <div class="form-group">
-                                <label for="status" class="control-label col-sm-3">Status:</label>
-                                <input type="text" class="form-control" id="status"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="start-date" class="control-label col-sm-3">StartDate:</label>
-                                <input type="text" class="form-control" id="start-date" />
-                            </div>
-                            <div class="form-group">
-                                <label for="release-date" class="control-label col-sm-3">ReleaseDate:</label>
-                                <input type="text" class="form-control" id="release-date" />
-                            </div>
-                            <div class="form-group">
-                                <label for="lanuch-date" class="control-label col-sm-3">LanuchDate:</label>
-                                <input type="text" class="form-control" id="lanuch-date" />
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <a href="#" class="button button-block button-rounded button-default" id="add-pb">+</a>
+                        </div>
                     </div>
-                    <div class="modal-footer" id="next-footer">
-                        <button type="button" class="btn btn-primary" id="next-project">Next</button>
-                    </div>
-                    <div class="modal-footer" id="submit-project">
-                        <button type="button" class="btn btn-primary" id="back-project">Back</button>
-                        <button type="button" class="btn btn-primary" id="button-submit-project">Submit</button>
-                    </div>
+                    @*填写project信息*@
+                    <form class="form-horizontal" id="add-project-message">
+                        <div class="form-group">
+                            <label for="status" class="control-label col-sm-3">Status:</label>
+                            <input type="text" class="form-control" id="status" />
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" class="control-label col-sm-3">StartDate:</label>
+                            <input type="text" class="form-control" id="start-date" />
+                        </div>
+                        <div class="form-group">
+                            <label for="release-date" class="control-label col-sm-3">ReleaseDate:</label>
+                            <input type="text" class="form-control" id="release-date" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lanuch-date" class="control-label col-sm-3">LanuchDate:</label>
+                            <input type="text" class="form-control" id="lanuch-date" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="next-footer">
+                    <button type="button" class="btn btn-primary" id="next-project">Next</button>
+                </div>
+                <div class="modal-footer" id="submit-project">
+                    <button type="button" class="btn btn-primary" id="back-project">Back</button>
+                    <button type="button" class="btn btn-primary" id="button-submit-project">Submit</button>
                 </div>
             </div>
         </div>
-
     </div>
-    <div class="col-xs-5 contour" style="margin:0; padding:0 10px 0 10px;overflow:scroll;" id="show-project">
+
+</div>
+<div  id="show-project-pb">
+    <div id="show-project">
+        <h2>Project</h2>
         @*将做好的project以不同panel形式展开*@
         @*中间project栏*@
-        @*@Ajax.ActionLink(" ","ShowProject", "Project", new AjaxOptions()
-       {
-           InsertionMode=InsertionMode.InsertAfter,
-           UpdateTargetId="show-project"
-       })*@
-       @{
-           Html.RenderAction("_showProject", "Project");
-       }
+
+        @*这两个顺序不可调换*@
+        @{
+            Html.RenderAction("_DetailProject", "Project");
+        }  
+        @{
+            Html.RenderAction("_showProject", "Project");
+        }
     </div>
-    <div class="col-xs-4 contour">
-        @*右边pb栏目*@
+    <div>
+        <br /><br />
+        <div id="accordion">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2 style="width:300px">PB</h2>
+                </div>
+                <div class="col-sm-2 col-sm-offset-6">
+                    <button class="button button-pill button-primary" style="margin:10px 0 0 0;position:relative;right:3px;">Add PB</button>
+                </div>
+            </div>
+           
+            @*下面pb栏目*@
+            @{  
+                Html.RenderAction("_showPB", "Project");
+            }
+        </div>
     </div>
 </div>
 <script src="~/Content/js_file/jquery-3.0.0.min.js"></script>
+<script src="~/Content/js_file/jquery-ui.min.js"></script>
+<script src="~/Content/js_file/jQuery-timepicker-addon.js"></script>
 <script src="~/Content/js_file/jquery.nicescroll.js"></script>
+<script src="~/Content/js_file/jquery.dataTables.min.js"></script>
 <script src="~/Content/js_file/projectJS.js"></script>
+
+

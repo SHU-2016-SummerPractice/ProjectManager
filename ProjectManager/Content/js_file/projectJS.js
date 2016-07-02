@@ -54,4 +54,56 @@
         cursorborderradius: "5px",//以像素为光标边界半径 
         autohidemode: false //是否隐藏滚动条 
     });
+    //project页面datatable
+    var oTable = $("#table-show-project").dataTable();
+
+
+    $(".row-details").on('click',function () {
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) //判断是否已打开
+        {
+            /* This row is already open - close it */
+            $(this).css({ "display": "none" });
+            //$(this).addClass("fa fa-plus").removeClass("fa fa-minus");
+            $(this).prev().css({ "display": "block" });
+            oTable.fnClose(nTr);
+        } else {
+            /* Open this row */
+            $(this).css({ "display": "none" });
+            $(this).next().css({ "display": "block" });
+            var broClass = $(this).parent().siblings("#get-this-class").attr("class");
+            var myHtml = $("#" + broClass + "").html();
+            oTable.fnOpen(nTr, myHtml, 'details');
+        }
+    });
+    $("#show-project").on("click", ".saveproject", this, function (event) {
+        var selectmessage = $(this).parent().siblings(".modal-body").children().children(".selector").find("option:selected").text().trim();
+        var lanuchDate = $(this).parent().siblings(".modal-body").children().children("#datepicker").val();
+        var Id = $(this).next().attr("class");
+        $.ajax({
+            type: "get",
+            contentType: "application/json",
+            url: "/Project/SaveProjectMessage",
+            async: false,
+            data: {
+                ProjectID: Id,
+                optionSelected: selectmessage,
+                lanuchDate: lanuchDate
+            },
+            success: function (result) {
+                alert(result);
+            },
+            error: function (result) {
+                alert("所填项目不能为空！");
+            }
+        });
+    });
+
+    //设置时间
+    $("#datepicker").datetimepicker({
+        timeFormat: "HH:mm:ss",
+        dateFormat: "yy/mm/dd"
+    });
+
+    //设置div宽度为自适应屏幕宽度
 });

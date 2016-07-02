@@ -4,52 +4,180 @@
 @{
     Layout = null;
 }
-@if(Model != null)
-{
-    for(int j=0 ; j < Model.Count ; j++)
+<table class="datatable" id="table-show-project" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ProjectID</th>
+            <th>MISStatus</th>
+            <th>StartDate</th>
+            <th>ReleaseDate</th>
+            <th>LanuchDate</th>
+            <th>Detail</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    @if(Model != null)
     {
-        if(Model[j].MISStatus.Equals("Release"))
+        for(int j=0 ; j < Model.Count ; j++)
         {
-            <div class="panel panel-danger" style="margin:10px 0 0 0">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Model[j].ID &nbsp;&nbsp; @Model[j].ProjectID</h3>
+
+
+            if(Model[j].MISStatus.Equals("Release"))
+            {
+                <tr>
+                    <td>@Model[j].ID</td>
+                    <td class="@Model[j].ProjectID" id="get-this-class">@Model[j].ProjectID</td>
+                    <td>
+                        <img src="~/Content/img_file/project_red.png" alt="Release" class="pic" />
+                        @Model[j].MISStatus
+                    </td>
+                    <td class="show-time" title="@Model[j].StartDate">@Model[j].StartDate</td>
+                    <td class="show-time" title="@Model[j].ReleaseDate">@Model[j].ReleaseDate</td>
+                    <td class="show-time" title="@Model[j].LanuchDate">@Model[j].LanuchDate</td>
+                    <td>
+                        @*id必须为projectID*@
+                        <i class="fa fa-plus row-details row-details-open" aria-hidden="true" style="cursor:pointer;width:16px;" id="@Model[j].ProjectID"></i>
+                        <i class="fa fa-minus row-details row-details-open" aria-hidden="true" style="cursor:pointer;display:none;width:16px;" id="@Model[j].ProjectID"></i> 
+                    </td>
+                    <td>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor:pointer;" data-toggle="modal" data-target="#@Model[j].ID@Model[j].ProjectID"></i>
+                    </td>
+                </tr>
+    <div class="modal fade" id="@Model[j].ID@Model[j].ProjectID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Edit Project</h4>
                 </div>
-                <div class="panel-body">
-                   MISStatus: @Model[j].MISStatus <br />
-                    StartDate:@Model[j].StartDate <br />
-                    ReleaseDate:@Model[j].ReleaseDate <br />
-                    LanuchDate:@Model[j].LanuchDate
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <select class="form-control selector">
+                                <option value="1">Release</option>
+                                <option value="2">Load</option>
+                                <option value="3">Coding</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
+                            <input type="text" class="form-control" id="datepicker" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary saveproject">Submit</button>
+                    <div class="@Model[j].ProjectID"></div>
                 </div>
             </div>
-        }
-        else if(Model[j].MISStatus.Equals("Load"))
-        {
-            <div class="panel panel-info" style="margin:10px 0 0 0">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Model[j].ID &nbsp;&nbsp; @Model[j].ProjectID</h3>
+        </div>
+    </div>
+            }
+            else if(Model[j].MISStatus.Equals("Load"))
+            {
+                <tr>
+                    <td>@Model[j].ID</td>
+                    <td class="@Model[j].ProjectID" id="get-this-class">@Model[j].ProjectID</td>
+                    <td>
+                        <img src="~/Content/img_file/project_blue.png" alt="Alternate Text" class="pic" />
+                        @Model[j].MISStatus
+                    </td>
+                    <td class="show-time" title="@Model[j].StartDate">@Model[j].StartDate</td>
+                    <td class="show-time" title="@Model[j].ReleaseDate">@Model[j].ReleaseDate</td>
+                    <td class="show-time" title="@Model[j].LanuchDate">@Model[j].LanuchDate</td>
+                    <td>
+                        <i class="fa fa-plus row-details row-details-open" aria-hidden="true" style="cursor:pointer;width:16px;" id="@Model[j].ProjectID"></i>
+                        <i class="fa fa-minus row-details row-details-open" aria-hidden="true" style="cursor:pointer;display:none;width:16px;" id="@Model[j].ProjectID"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor:pointer;" data-toggle="modal" data-target="#@Model[j].ID@Model[j].ProjectID"></i>
+                    </td>
+                </tr>
+    <div class="modal fade" id="@Model[j].ID@Model[j].ProjectID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Edit Project</h4>
                 </div>
-                <div class="panel-body">
-                    MISStatus: @Model[j].MISStatus <br />
-                    StartDate:@Model[j].StartDate <br />
-                    ReleaseDate:@Model[j].ReleaseDate <br />
-                    LanuchDate:@Model[j].LanuchDate
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <select class="form-control selector">
+                                <option value="1">Load</option>
+                                <option value="2">Release</option>
+                                <option value="3">Coding</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
+                            <input type="text" class="form-control" id="message-text" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary saveproject">Submit</button>
                 </div>
             </div>
-        }
-        else if(Model[j].MISStatus.Equals("Coding"))
-        {
-            <div class="panel panel-success" style="margin:10px 0 0 0">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Model[j].ID &nbsp;&nbsp; @Model[j].ProjectID</h3>
+        </div>
+    </div>
+            }
+            else if(Model[j].MISStatus.Equals("Coding"))
+            {
+                <tr>
+                    <td>@Model[j].ID</td>
+                    <td class="@Model[j].ProjectID" id="get-this-class">@Model[j].ProjectID</td>
+                    <td>
+                        <img src="~/Content/img_file/project_green.png" alt="Alternate Text" class="pic" />
+                        @Model[j].MISStatus
+                    </td>
+                    <td class="show-time" title="@Model[j].StartDate">@Model[j].StartDate</td>
+                    <td class="show-time" title="@Model[j].ReleaseDate">@Model[j].ReleaseDate</td>
+                    <td class="show-time" title="@Model[j].LanuchDate">@Model[j].LanuchDate</td>
+                    <td>
+                        <i class="fa fa-plus row-details row-details-open" aria-hidden="true" style="cursor:pointer;width:16px;" id="@Model[j].ProjectID"></i>
+                        <i class="fa fa-minus row-details row-details-open" aria-hidden="true" style="cursor:pointer;display:none;width:16px;" id="@Model[j].ProjectID"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor:pointer;" data-toggle="modal" data-target="#@Model[j].ID@Model[j].ProjectID"></i>
+                    </td>
+                </tr>
+    <div class="modal fade" id="@Model[j].ID@Model[j].ProjectID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Edit Project</h4>
                 </div>
-                <div class="panel-body">
-                    MISStatus: @Model[j].MISStatus <br />
-                    StartDate:@Model[j].StartDate <br />
-                    ReleaseDate:@Model[j].ReleaseDate <br />
-                    LanuchDate:@Model[j].LanuchDate
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <select class="form-control selector">
+                                <option value="1">Coding</option>
+                                <option value="2">Load</option>
+                                <option value="3">Release</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
+                            <input type="text" class="form-control" id="message-text" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary saveproject">Submit</button>
                 </div>
             </div>
+        </div>
+    </div>
+            }
         }
     }
-}
-
+</table>
