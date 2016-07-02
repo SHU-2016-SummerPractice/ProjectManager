@@ -28,6 +28,10 @@ namespace ProjectManager.Controllers
 		}
         public ActionResult ViviaTest()
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Account/Login?returnUrl=/Home/ViviaTest");
+            }
             ModelDbContext mdb = new ModelDbContext();
             IQueryable<ProjectInfo> projectInfos = mdb.ProjectInfoes;
             ProjectInfo tmp = projectInfos.First();
