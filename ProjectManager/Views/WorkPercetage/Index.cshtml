@@ -11,7 +11,35 @@
         $(document).ready(function() {
             $('#datatable').DataTable();
             $('#datatable-div').css("visibility", "visible");
-        } );
+            $('#editModal')
+            .on('show.bs.modal',
+                function (event) {
+                    var button = $(event.relatedTarget);
+                    var staffid = button.data('staffid');
+                    var percentage = button.data('percentage');
+                    var project = button.data('project');
+                    var memo = button.data('memo');
+                    var modal = $(this);
+                    modal.find('.modal-body #staffid').val(staffid);
+                    modal.find('.modal-body #percentage').val(percentage);
+                    modal.find('.modal-body #project').val(project);
+                    modal.find('.modal-body #memo').val(memo);
+                });
+            $('#save').click(function () {
+                var modal = $('#editModal');
+                var staffid = modal.find('.modal-body #staffid').val();
+                var percentage = modal.find('.modal-body #percentage').val();
+                var project = modal.find('.modal-body #project').val();
+                var memo = modal.find('.modal-body #memo').val();
+                $.ajax({
+                    type: "POST",
+                    data: "staffid=" + staffid + "&percentage=" + percentage + "&project=" + project + "&memo=" + memo,
+                    url: "/WorkPercetage/Update", success: function () {
+                        location.reload();
+                    }
+                });
+            });
+        });
     </script>
 }
 
@@ -22,24 +50,117 @@
             <tr>
                 <th>Staff Id</th>
                 <th>Percentage</th>
-                <th>Work Load Percentage</th>
                 <th>Project</th>
                 <th>Memo</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (Domain d in ViewBag.workPercetages)
             {
-                <tr>
-                    <td>@d.StaffId</td>
-                    <td>@d.Percentage</td>
-                    <td>@d.WorkLoadPercentage</td>
-                    <td>@d.Project</td>
-                    <td>@d.Memo</td>
-                </tr>
+                if (d.Percentage == 100)
+                {
+                    <tr>
+                        <td>@d.StaffId</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                    @d.Percentage%
+                                </div>
+                            </div>
+                        </td>
+                        <td>@d.Project</td>
+                        <td>@d.Memo</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                    </tr>
+                }
+                else if (d.Percentage >= 80)
+                {
+                    <tr>
+                        <td>@d.StaffId</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                    @d.Percentage%
+                                </div>
+                            </div>
+                        </td>
+                        <td>@d.Project</td>
+                        <td>@d.Memo</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                    </tr>
+                }
+                else if (d.Percentage >= 50)
+                {
+                    <tr>
+                        <td>@d.StaffId</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning  " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                    @d.Percentage%
+                                </div>
+                            </div>
+                        </td>
+                        <td>@d.Project</td>
+                        <td>@d.Memo</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@d.StaffId</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                    @d.Percentage%
+                                </div>
+                            </div>
+                        </td>
+                        <td>@d.Project</td>
+                        <td>@d.Memo</td>
+                        <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                    </tr>
+                }
+
             }
         </tbody>
     </table>
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="staffid" class="control-label">Staff Id:</label>
+                        <input type="text" class="form-control" id="staffid" style="max-width: 100%" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="percentage" class="control-label">Percentage:</label>
+                        <input type="text" class="form-control" id="percentage" style="max-width: 100%"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="project" class="control-label">Project:</label>
+                        <input type="text" class="form-control" id="project" style="max-width: 100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="memo" class="control-label">Memo:</label>
+                        <textarea class="form-control" id="memo" style="max-width: 100%" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
