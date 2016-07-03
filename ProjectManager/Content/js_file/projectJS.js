@@ -166,5 +166,18 @@
             }
         });
     });
+    $("#button-add-pb-message").click(function () {
+        $("#add-project-message-show").css({ "display": "block" });
+        $('#main-panel').css({ "-webkit-filter": "blur(3px)" },
+        { "-moz-filter": "blur(3px)" },
+        { "-o-filter": "blur(3px)" },
+        { "-ms-filter": "blur(3px)" },
+        { "filter": "blur(3px)" }, { "background": "#777" });
+    });
+    $(".cancle-addPB-button").click(function () {
+        $("#add-project-message-show").css({ "position": "fixed" }, { "left": "15%" }, { "top": "20%" }, { "z-index": "1000" }, { "background": "#ffffff" }, { "padding": "30px" }, { "margin": "0" }, { "border": "2px solid #777" });
+    });
+    $(".submit-message-pb-button").click(function () {
 
+    });
 });

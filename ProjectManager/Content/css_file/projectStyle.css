@@ -86,8 +86,11 @@ text-decoration:none;
 /*addPB表单样式*/
 #add-project-message-show{
     position:fixed;
-    left:40%;
+    left:15%;
     top:20%;
-    /*z-index:1000;*/
-
+    z-index:1000;
+    background:#ffffff;
+    padding:30px;
+    margin:0;
+    border:2px solid #777;
 }
