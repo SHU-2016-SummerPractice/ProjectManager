@@ -13,7 +13,9 @@ namespace ProjectManager.Controllers
         // GET: WorkPercetage
         public ActionResult Index()
         {
-            ModelDbContext mdb = new ModelDbContext();
+			if (!User.Identity.IsAuthenticated)
+				return Redirect("/Account/Login?returnUrl=/WorkPercetage/Index");
+			ModelDbContext mdb = new ModelDbContext();
             IQueryable<Domain> workPercetages = mdb.Domains;
             ViewBag.workPercetages = workPercetages;
             return View();
@@ -21,7 +23,9 @@ namespace ProjectManager.Controllers
 
 	    public ActionResult Update(string staffid, string percentage, string project, string memo)
 	    {
-			if(staffid == null || staffid.IsEmpty()
+		    if (!User.Identity.IsAuthenticated)
+			    return null;
+			if (staffid == null || staffid.IsEmpty()
 				|| percentage == null || percentage.IsEmpty()
 				|| project == null || project.IsEmpty()
 				|| memo == null || memo.IsEmpty()
