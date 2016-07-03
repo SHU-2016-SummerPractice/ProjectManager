@@ -1,23 +1,114 @@
-﻿@{
+﻿@using ProjectManager.Models;
+@model List<PBInfo>
+@{
     Layout = null;
 }
-<table class="table table-bordered" id="database-table">
-    <tr>
-        <th>Select</th>
-        <th>PBNo</th>
-        <th>PBName</th>
-        <th>Detail</th>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="PB" value=" " />
-        </td>
-        <td>BSAPT-3034</td>
-        <td>Update Volume Discount presentation and buy box logic.</td>
-        <td>
-            <button class="btn btn-primary">
-                Detail
-            </button>
-        </td>
-    </tr>
-</table>
+
+@if(Model != null)
+{
+    <table class="table table-hover" id="database-table">
+        <tr>
+            <th>PBNo</th>
+            <th>PBName</th>
+            <th>Detail</th>
+        </tr>
+        @for(int i=0 ; i < Model.Count ; i++)
+        {
+            <tr>
+                <td>@Model[i].PBNo</td>
+                <td>@Model[i].PBName</td>
+            <td>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#@Model[i].PBNo">
+                    Detail
+                </button>
+            </td>
+        </tr>
+        }
+    </table>
+    for(int i=0 ; i < Model.Count ; i++)
+    {
+        <div class="modal fade" id="@Model[i].PBNo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div>
+                            <table class="table table-hover" style="table-layout: fixed;">
+                                <tr>
+                                    <th>PBNo</th>
+                                    <th>PBLink</th>
+                                    <th>USPMId</th>
+                                    <th>Maturity</th>
+                                    <th title="EstimatedHours" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">EstimatedHours</th>
+                                    <th title="MaturityEstimateHours" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">MaturityEstimateHours</th>
+                                </tr>
+                                <tr>
+                                    <td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" title="@Model[i].PBNo">@Model[i].PBNo</td>
+                                    <td>@Model[i].PBLink</td>
+                                    <td>@Model[i].USPMId</td>
+                                    <td>@Model[i].Maturity</td>
+                                    <td>@Model[i].EstimatedHours</td>
+                                    <td>@Model[i].MaturityEstimateHours</td>
+                                </tr>
+                            </table>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>ActualHours</th>
+                                    <th>NeedInMobile</th>
+                                    <th>WillFinish</th>
+                                    <th>BizUnit</th>
+                                    <th>Domain</th>
+                                </tr>
+                                <tr>
+                                	<td>@Model[i].ActualHours</td>
+                                	<td>@Model[i].NeedInMobile</td>
+                                	<td>@Model[i].WillFinish</td>
+                                	<td>@Model[i].BizUnit</td>
+                                	<td>@Model[i].Domain</td>
+                                </tr>
+                            </table>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>AppproveDate</th>
+                                    <th>GQCDate</th>
+                                    <th>CRLType</th>
+                                    <th>ProjectOwner</th>
+                                    <th>BSA</th>
+                                </tr>
+                                <tr>
+                                	<td>@Model[i].AppproveDate</td>
+                                	<td>@Model[i].GQCDate</td>
+                                	<td>@Model[i].CRLType</td>
+                                	<td>@Model[i].ProjectOwner</td>
+                                	<td>@Model[i].BSA</td>
+                                </tr>
+                            </table>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>USPT</th>
+                                    <th>CDPT</th>
+                                    <th>SCRL</th>
+                                    <th>Purpose</th>
+                                    <th>Memo</th>
+                                </tr>
+                                <tr>
+                                	<td>@Model[i].USPT</td>
+                                	<td>@Model[i].CDPT</td>
+                                	<td>@Model[i].SCRL</td>
+                                	<td>@Model[i].Purpose</td>
+                                	<td>@Model[i].Memo</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+        
+    

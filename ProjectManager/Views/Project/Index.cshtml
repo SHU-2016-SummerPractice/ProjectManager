@@ -33,6 +33,9 @@
             &nbsp;&nbsp;
             <img src="~/Content/img_file/project_green.png" alt="Alternate Text" class="pic" />
             <a href="#" class="project-status">Coding</a> &nbsp;@ViewBag.codingCount
+            &nbsp;&nbsp;
+            <img src="~/Content/img_file/project_purple.png" alt="Alternate Text" class="pic" />
+            <a href="#" class="project-status">Lanuch</a> &nbsp;@ViewBag.lanuchCount
         </div>
         <div id="add" class="col-sm-offset-1 col-sm-3">
             @*两个按钮，用来添加PB和project*@
@@ -52,8 +55,8 @@
                     @*步骤页面页面一为填写PB*@
                     <div class="form-horizontal" id="add-pb-message">
                         <div class="form-group" id="div-pb-NO">
-                            <label for="pb-NO" class="control-label col-sm-3">PBNO:</label>
-                            <input type="text" class="form-control col-sm-5" id="pb-NO" />
+                            <label class="control-label col-sm-3">PBNO:</label>
+                            <input type="text" class="form-control col-sm-5 pb-NO" />
                             <i class="fa fa-lg fa-trash delete-parent-div" aria-hidden="true" style="cursor: pointer;position:relative;left:10px;top:4px;"></i>
                         </div>
                         <div class="form-group">
@@ -63,20 +66,52 @@
                     @*填写project信息*@
                     <form class="form-horizontal" id="add-project-message">
                         <div class="form-group">
-                            <label for="status" class="control-label col-sm-3">Status:</label>
-                            <input type="text" class="form-control" id="status" />
+                            <label class="control-label col-sm-4">ProjectID:</label>
+                            <input type="text" class="form-control " id="projectIDs" />
                         </div>
                         <div class="form-group">
-                            <label for="start-date" class="control-label col-sm-3">StartDate:</label>
-                            <input type="text" class="form-control" id="start-date" />
+                            <label class="control-label col-sm-4">LO:</label>
+                            <input type="text" class="form-control " id="LO" />
                         </div>
                         <div class="form-group">
-                            <label for="release-date" class="control-label col-sm-3">ReleaseDate:</label>
-                            <input type="text" class="form-control" id="release-date" />
+                            <label class="control-label col-sm-4">CNPMId:</label>
+                            <input type="text" class="form-control " id="cnpMId" />
                         </div>
                         <div class="form-group">
-                            <label for="lanuch-date" class="control-label col-sm-3">LanuchDate:</label>
-                            <input type="text" class="form-control" id="lanuch-date" />
+                            <label for="status" class="control-label col-sm-4">Status:</label>
+                            <select class="form-control selector-status">
+                                <option value="1">Release</option>
+                                <option value="2">Load</option>
+                                <option value="3">Coding</option>
+                                <option value="4">Lanuch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-sm-4">IsLanuched:</label>
+                            <select class="form-control IsLanucheds">
+                                <option value="1">Y</option>
+                                <option value="2">N</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" class="control-label col-sm-4">StartDate:</label>
+                            <input type="text" class="form-control datepicker" id="start-date" placeholder="2000/01/01 00:00:00" />
+                        </div>
+                        <div class="form-group">
+                            <label for="release-date" class="control-label col-sm-4">ReleaseDate:</label>
+                            <input type="text" class="form-control datepicker" id="release-date" placeholder="2000/01/01 00:00:00" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lanuch-date" class="control-label col-sm-4">LanuchDate:</label>
+                            <input type="text" class="form-control datepicker" id="lanuch-date" placeholder="2000/01/01 00:00:00" />
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-sm-4">DelayLanuchDate:</label>
+                            <input type="text" class="form-control datepicker " id="delay-lanuch-date" placeholder="2000/01/01 00:00:00" />
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label col-sm-4">DelayReleaseDate:</label>
+                            <input type="text" class="form-control datepicker" id="delay-release-date" placeholder="2000/01/01 00:00:00" />
                         </div>
                     </form>
                 </div>
@@ -97,11 +132,13 @@
         <h2>Project</h2>
         @*将做好的project以不同panel形式展开*@
         @*中间project栏*@
-
         @*这两个顺序不可调换*@
         @{
             Html.RenderAction("_DetailProject", "Project");
         }  
+        <div id="ajax-show-project">
+
+        </div>
         @{
             Html.RenderAction("_showProject", "Project");
         }
@@ -114,10 +151,120 @@
                     <h2 style="width:300px">PB</h2>
                 </div>
                 <div class="col-sm-2 col-sm-offset-6">
-                    <button class="button button-pill button-primary" style="margin:10px 0 0 0;position:relative;right:3px;">Add PB</button>
+                    <button class="button button-pill button-primary" id style="margin:10px 0 0 0;position:relative;right:3px;">Add PB</button>
                 </div>
             </div>
-           
+            <div style="display:none;" id="add-project-message-show">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">PBNo</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">PBName</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">PBLink</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">USPMId</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">Maturity</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">EstimatedHours</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">MaturityEstimateHours</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">ActualHours</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">NeedInMobile</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">WillFinish</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">BizUnit</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">Domain</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">AppproveDate</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">GQCDate</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">CRLType</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">ProjectOwner</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">BSA</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">USPT</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">CDPT</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">SCRL</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">SCRL</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="" class="control-label">SCRL</label>
+                            <input type="text" name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-5">
+                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-default">Cancle</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
             @*下面pb栏目*@
             @{  
                 Html.RenderAction("_showPB", "Project");

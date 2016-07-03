@@ -21,8 +21,6 @@
     {
         for(int j=0 ; j < Model.Count ; j++)
         {
-
-
             if(Model[j].MISStatus.Equals("Release"))
             {
                 <tr>
@@ -54,16 +52,57 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <label class="control-label col-sm-4">LO:</label>
+                            <input type="text" class="form-control LO" value="@Model[j].LO" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">CNPMId:</label>
+                            <input type="text" class="form-control cnpMId" value="@Model[j].CNPMId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-4 control-label">Status:</label>
                             <select class="form-control selector">
                                 <option value="1">Release</option>
                                 <option value="2">Load</option>
                                 <option value="3">Coding</option>
+                                <option value="4">Lanuch</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
-                            <input type="text" class="form-control" id="datepicker" />
+                            <label class="control-label col-sm-4">IsLanuched:</label>
+                            <select class="form-control IsLanuched">
+                                @if(@Model[j].IsLanuched.Equals("Y"))
+                                {
+                                    <option value="1">Y</option>
+                                    <option value="2">N</option>
+                                }
+                                else
+                                {
+                                    <option value="1">N</option>
+                                    <option value="2">Y</option>
+                                }
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" class="control-label col-sm-4">StartDate:</label>
+                            <input type="text" class="form-control datepicker start-date" value="@Model[j].StartDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="release-date" class="control-label col-sm-4">ReleaseDate:</label>
+                            <input type="text" class="form-control datepicker release-date" value="@Model[j].ReleaseDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-4">LaunchDate:</label>
+                            <input type="text" class="form-control lanuchDate datepicker" value="@Model[j].LanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayLanuchDate:</label>
+                            <input type="text" class="form-control datepicker delay-lanuch-date" value="@Model[j].DelayLanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayReleaseDate:</label>
+                            <input type="text" class="form-control datepicker delay-release-date" value="@Model[j].DelayReleaseDate" />
                         </div>
                     </form>
                 </div>
@@ -106,22 +145,64 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <label class="control-label col-sm-4">LO:</label>
+                            <input type="text" class="form-control LO" value="@Model[j].LO" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">CNPMId:</label>
+                            <input type="text" class="form-control cnpMId" value="@Model[j].CNPMId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-4 control-label">Status:</label>
                             <select class="form-control selector">
                                 <option value="1">Load</option>
-                                <option value="2">Release</option>
-                                <option value="3">Coding</option>
+                                <option value="2">Coding</option>
+                                <option value="3">Release</option>
+                                <option value="4">Lanuch</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
-                            <input type="text" class="form-control" id="message-text" />
+                            <label class="control-label col-sm-4">IsLanuched:</label>
+                            <select class="form-control IsLanuched">
+                                @if(@Model[j].IsLanuched.Equals("Y"))
+                                {
+                                    <option value="1">Y</option>
+                                    <option value="2">N</option>
+                                }
+                                else
+                                {
+                                    <option value="1">N</option>
+                                    <option value="2">Y</option>
+                                }
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" class="control-label col-sm-4">StartDate:</label>
+                            <input type="text" class="form-control datepicker start-date" value="@Model[j].StartDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="release-date" class="control-label col-sm-4">ReleaseDate:</label>
+                            <input type="text" class="form-control datepicker release-date" value="@Model[j].ReleaseDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-4">LaunchDate:</label>
+                            <input type="text" class="form-control datepicker lanuchDate" value="@Model[j].LanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayLanuchDate:</label>
+                            <input type="text" class="form-control datepicker delay-lanuch-date" value="@Model[j].DelayLanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayReleaseDate:</label>
+                            <input type="text" class="form-control datepicker delay-release-date" value="@Model[j].DelayReleaseDate" />
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary saveproject">Submit</button>
+                    <div class="@Model[j].ProjectID"></div>
                 </div>
             </div>
         </div>
@@ -157,27 +238,165 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-sm-3 control-label">Status:</label>
+                            <label class="control-label col-sm-4">LO:</label>
+                            <input type="text" class="form-control LO" value="@Model[j].LO"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">CNPMId:</label>
+                            <input type="text" class="form-control cnpMId" value="@Model[j].CNPMId"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-sm-4 control-label">Status:</label>
                             <select class="form-control selector">
                                 <option value="1">Coding</option>
                                 <option value="2">Load</option>
                                 <option value="3">Release</option>
+                                <option value="4">Lanuch</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="control-label col-sm-3">LaunchDate:</label>
-                            <input type="text" class="form-control" id="message-text" />
+                            <label class="control-label col-sm-4">IsLanuched:</label>
+                            <select class="form-control IsLanuched">
+                                @if(@Model[j].IsLanuched.Equals("Y"))
+                                {
+                                    <option value="1">Y</option>
+                                    <option value="2">N</option>
+                                }
+                                else
+                                {
+                                    <option value="1">N</option>
+                                    <option value="2">Y</option>
+                                }
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" class="control-label col-sm-4">StartDate:</label>
+                            <input type="text" class="form-control datepicker start-date"  value="@Model[j].StartDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="release-date" class="control-label col-sm-4">ReleaseDate:</label>
+                            <input type="text" class="form-control datepicker release-date"  value="@Model[j].ReleaseDate" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label col-sm-4">LaunchDate:</label>
+                            <input type="text" class="form-control datepicker lanuchDate" value="@Model[j].LanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayLanuchDate:</label>
+                            <input type="text" class="form-control datepicker delay-lanuch-date"  value="@Model[j].DelayLanuchDate" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">DelayReleaseDate:</label>
+                            <input type="text" class="form-control datepicker delay-release-date"  value="@Model[j].DelayReleaseDate" />
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary saveproject">Submit</button>
+                    <div class="@Model[j].ProjectID"></div>
                 </div>
             </div>
         </div>
     </div>
             }
+            else if(Model[j].MISStatus.Equals("Lanuch"))
+            {
+                <tr>
+                    <td>@Model[j].ID</td>
+                    <td class="@Model[j].ProjectID" id="get-this-class">@Model[j].ProjectID</td>
+                    <td>
+                        <img src="~/Content/img_file/project_purple.png" alt="Alternate Text" class="pic" />
+                        @Model[j].MISStatus
+                    </td>
+                    <td class="show-time" title="@Model[j].StartDate">@Model[j].StartDate</td>
+                    <td class="show-time" title="@Model[j].ReleaseDate">@Model[j].ReleaseDate</td>
+                    <td class="show-time" title="@Model[j].LanuchDate">@Model[j].LanuchDate</td>
+                    <td>
+                        <i class="fa fa-plus row-details row-details-open" aria-hidden="true" style="cursor:pointer;width:16px;" id="@Model[j].ProjectID"></i>
+                        <i class="fa fa-minus row-details row-details-open" aria-hidden="true" style="cursor:pointer;display:none;width:16px;" id="@Model[j].ProjectID"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor:pointer;" data-toggle="modal" data-target="#@Model[j].ID@Model[j].ProjectID"></i>
+                    </td>
+                </tr>
+                <div class="modal fade" id="@Model[j].ID@Model[j].ProjectID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Edit Project</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">LO:</label>
+                                        <input type="text" class="form-control LO" value="@Model[j].LO" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">CNPMId:</label>
+                                        <input type="text" class="form-control cnpMId" value="@Model[j].CNPMId" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-sm-4 control-label">Status:</label>
+                                        <select class="form-control selector">
+                                            <option value="1">Lanuch</option>
+                                            <option value="2">Load</option>
+                                            <option value="3">Release</option>
+                                            <option value="4">Coding</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">IsLanuched:</label>
+                                        <select class="form-control IsLanuched">
+                                            @if(@Model[j].IsLanuched.Equals("Y"))
+                                            {
+                                                <option value="1">Y</option>
+                                                <option value="2">N</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="1">N</option>
+                                                <option value="2">Y</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="start-date" class="control-label col-sm-4">StartDate:</label>
+                                        <input type="text" class="form-control datepicker start-date" value="@Model[j].StartDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="release-date" class="control-label col-sm-4">ReleaseDate:</label>
+                                        <input type="text" class="form-control datepicker release-date" value="@Model[j].ReleaseDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="control-label col-sm-4">LaunchDate:</label>
+                                        <input type="text" class="form-control datepicker lanuchDate" value="@Model[j].LanuchDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">DelayLanuchDate:</label>
+                                        <input type="text" class="form-control datepicker delay-lanuch-date" value="@Model[j].DelayLanuchDate" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">DelayReleaseDate:</label>
+                                        <input type="text" class="form-control datepicker delay-release-date" value="@Model[j].DelayReleaseDate" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary saveproject">Submit</button>
+                                <div class="@Model[j].ProjectID"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         }
     }
 </table>
+<script src="~/Content/js_file/jquery-3.0.0.min.js"></script>
+<script src="~/Content/js_file/jquery-ui.min.js"></script>
+<script src="~/Content/js_file/jquery.dataTables.min.js"></script>

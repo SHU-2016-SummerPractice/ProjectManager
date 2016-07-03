@@ -37,5 +37,6 @@ namespace ProjectManager.Models
 		public double? SCRL { get; set; }
 		public string Purpose { get; set; }
 		public string Memo { get; set; }
+        public int? ShowPB { get; set; }
 	}
 }

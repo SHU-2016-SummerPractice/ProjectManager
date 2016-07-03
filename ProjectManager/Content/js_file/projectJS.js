@@ -28,11 +28,11 @@
         var getId = $(this).parent().prev().attr("id");
         if (typeof (getId) != "undefined") {
             j++;
-            $("#" + getId).after("<div class='form-group' id='div-pb-NO" + j + "'><label for='pb-NO" + j + "' class='control-label col-sm-3'>PBNO:</label><input type='text' class='form-control col-sm-5' id='pb-NO" + j + "' /><i class='fa fa-lg fa-trash delete-parent-div' aria-hidden='true' style='cursor:pointer;position:relative;left:10px;top:4px;'></i></div>");
+            $("#" + getId).after("<div class='form-group' id='div-pb-NO" + j + "'><label for='pb-NO" + j + "' class='control-label col-sm-3'>PBNO:</label><input type='text' class='form-control col-sm-5 pb-NO' id='pb-NO" + j + "' /><i class='fa fa-lg fa-trash delete-parent-div' aria-hidden='true' style='cursor:pointer;position:relative;left:10px;top:4px;'></i></div>");
             i = j;
         } else {
             j = 0;
-            $(this).before("<div class='form-group' id='div-pb-NO'><label for='pb-NO' class='control-label col-sm-3'>PBNO:</label><input type='text' class='form-control col-sm-5' id='pb-NO' /><i class='fa fa-lg fa-trash delete-parent-div' aria-hidden='true' style='cursor: pointer;position:relative;left:10px;top:4px;'></i></div>")
+            $(this).before("<div class='form-group' id='div-pb-NO'><label for='pb-NO' class='control-label col-sm-3'>PBNO:</label><input type='text' class='form-control col-sm-5 pb-NO' id='pb-NO' /><i class='fa fa-lg fa-trash delete-parent-div' aria-hidden='true' style='cursor: pointer;position:relative;left:10px;top:4px;'></i></div>")
         }
 
         var k = 0;
@@ -78,20 +78,36 @@
     });
     $("#show-project").on("click", ".saveproject", this, function (event) {
         var selectmessage = $(this).parent().siblings(".modal-body").children().children(".selector").find("option:selected").text().trim();
-        var lanuchDate = $(this).parent().siblings(".modal-body").children().children("#datepicker").val();
+        var lanuchDate = $(this).parent().siblings(".modal-body").children().children(".lanuchDate").val();
+        var lo = $(this).parent().siblings(".modal-body").children().children(".LO").val();
+        var cnpMId = $(this).parent().siblings(".modal-body").children().children(".cnpMId").val();
+        var IsLanuched = $(this).parent().siblings(".modal-body").children().children(".IsLanuched").find("option:selected").text().trim();
+        var startDate = $(this).parent().siblings(".modal-body").children().children(".start-date").val();
+        var releaseDate = $(this).parent().siblings(".modal-body").children().children(".release-date").val();
+        var delayLanuchDate = $(this).parent().siblings(".modal-body").children().children(".delay-lanuch-date").val();
+        var delayReleaseDate=$(this).parent().siblings(".modal-body").children().children(".delay-release-date").val();
         var Id = $(this).next().attr("class");
         $.ajax({
             type: "get",
             contentType: "application/json",
             url: "/Project/SaveProjectMessage",
-            async: false,
+            async: true,
             data: {
                 ProjectID: Id,
                 optionSelected: selectmessage,
-                lanuchDate: lanuchDate
+                lanuchDate: lanuchDate,
+                Lo: lo,
+                CNPMId: cnpMId,
+                status: status,
+                IsLanuched: IsLanuched,
+                startDate: startDate,
+                releaseDate: releaseDate,
+                DelayLanuchDate: delayLanuchDate,
+                DelayReleaseDate: delayReleaseDate
             },
             success: function (result) {
                 alert(result);
+                window.location.reload();
             },
             error: function (result) {
                 alert("所填项目不能为空！");
@@ -100,10 +116,63 @@
     });
 
     //设置时间
-    $("#datepicker").datetimepicker({
-        timeFormat: "HH:mm:ss",
-        dateFormat: "yy/mm/dd"
+    $(".datepicker").datetimepicker({
+        timeFormat: "H:mm:ss",
+        dateFormat: "yy/m/d"
     });
 
-    //设置div宽度为自适应屏幕宽度
+    //添加project
+    $("#button-submit-project").click(function () {
+        var projectID = $("#projectIDs").val();
+        var lo = $("#LO").val();
+        var CNPMId = $("#cnpMId").val();
+        var status = $(".selector-status").find("option:selected").text().trim();
+        var IsLanuched = $(".IsLanucheds").find("option:selected").text().trim();
+        var startDate = $("#start-date").val();
+        var releaseDate = $("#release-date").val();
+        var lanuchDate = $("#lanuch-date").val();
+        var delayLanuchDate = $("#delay-lanuch-date").val();
+        var delayReleaseDate = $("#delay-release-date").val();
+        var pbNO = {};
+        var i = 0;
+        alert(CNPMId);
+        alert(status);
+        alert(IsLanuched);
+        alert(startDate);
+        alert(releaseDate);
+        alert(lanuchDate);
+        alert(delayLanuchDate);
+        alert(delayReleaseDate);
+        $(".pb-NO").each(function () {
+            pbNO[i] = $(this).val();
+            i++;
+        });
+        $.ajax({
+            type: "get",
+            contentType: "application/json",
+            url: "/Project/AddProject",
+            async: true,
+            data: {
+                ProjectID:projectID,
+                Lo: lo,
+                CNPMId: CNPMId,
+                status: status,
+                IsLanuched:IsLanuched,
+                startDate: startDate,
+                releaseDate: releaseDate,
+                lanuchDate: lanuchDate,
+                DelayLanuchDate: delayLanuchDate,
+                DelayReleaseDate:delayReleaseDate,
+                pbNO: pbNO
+            },
+            success: function (result) {
+                alert(result);
+                window.location.reload();
+            },
+            error: function (result) {
+                alert("添加失败！");
+            }
+        })
+
+    });
 });

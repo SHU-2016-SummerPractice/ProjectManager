@@ -23,7 +23,9 @@ namespace ProjectManager.Controllers
             ViewBag.codingCount = (from projectInfo in mdc.ProjectInfoes
                                    where projectInfo.MISStatus.Equals("Coding")
                                    select projectInfo.MISStatus).Count();
-
+            ViewBag.lanuchCount = (from projectInfo in mdc.ProjectInfoes
+                                   where projectInfo.MISStatus.Equals("Lanuch")
+                                   select projectInfo.MISStatus).Count();
             return View();
         }
 
@@ -36,7 +38,10 @@ namespace ProjectManager.Controllers
 
         public ActionResult _showPB()
         {
-            return View();
+
+            List<PBInfo> pbInfo = mdc.PbInfoes.Where(u => u.ShowPB == 0).ToList();
+
+            return View(pbInfo);
         }
         public ActionResult _DetailProject()
         {
@@ -49,14 +54,68 @@ namespace ProjectManager.Controllers
             return View(detailProject);
         }
 
-        public string SaveProjectMessage(string ProjectID, string optionSelected, string lanuchDate)
+        public string SaveProjectMessage(string ProjectID, string optionSelected, string lanuchDate, string LO, string CNPMId, string status, string IsLanuched, string startDate, string releaseDate, string DelayLanuchDate, string DelayReleaseDate)
         {
-            string result="success";
+            string result="更新成功！";
             int id = Convert.ToInt32(ProjectID);
+            int lo=Convert.ToInt32(LO);
             var newProject = mdc.ProjectInfoes.Where(u => u.ProjectID == id ).FirstOrDefault();
             newProject.MISStatus = optionSelected;
-            DateTime datetime=DateTime.ParseExact(lanuchDate, "yyyy/MM/dd HH:mm:ss", null);
-            newProject.LanuchDate = datetime;
+            DateTime datetime=DateTime.ParseExact(lanuchDate, "yyyy/M/d H:mm:ss", null);
+            DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy/M/d H:mm:ss", null);
+            DateTime releaseDateTime = DateTime.ParseExact(releaseDate, "yyyy/M/d H:mm:ss", null);
+            DateTime delayLanuchDateTime = DateTime.ParseExact(DelayLanuchDate, "yyyy/M/d H:mm:ss", null);
+            DateTime delayReleaseDateTime = DateTime.ParseExact(DelayReleaseDate, "yyyy/M/d H:mm:ss", null);
+            if(CNPMId.Length != 0)
+            {
+                int cnpId=Convert.ToInt32(CNPMId);
+                newProject.LanuchDate = datetime;
+                newProject.LO = lo;
+                newProject.CNPMId = cnpId;
+                newProject.StartDate = startDateTime;
+                newProject.ReleaseDate = releaseDateTime;
+                newProject.DelayLanuchDate = delayLanuchDateTime;
+                newProject.DelayReleaseDate = delayReleaseDateTime;
+                newProject.IsLanuched = IsLanuched;
+                mdc.SaveChanges();
+            }
+            else
+            {
+                newProject.LanuchDate = datetime;
+                newProject.LO = lo;
+                newProject.StartDate = startDateTime;
+                newProject.ReleaseDate = releaseDateTime;
+                newProject.DelayLanuchDate = delayLanuchDateTime;
+                newProject.DelayReleaseDate = delayReleaseDateTime;
+                newProject.IsLanuched = IsLanuched;
+                mdc.SaveChanges();
+            }
+            return result;
+        }
+
+        public string AddProject(string ProjectID,string LO,string CNPMId,string status,string IsLanuched, string startDate, string releaseDate, string lanuchDate, string DelayLanuchDate,string DelayReleaseDate,string[] pbNO)
+        {
+            string result="添加成功！";
+            int projectID=Convert.ToInt32(ProjectID.Trim());
+            int lo=Convert.ToInt32(LO.Trim());
+            int cnpId=Convert.ToInt32(CNPMId.Trim());
+            DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy/M/d H:mm:ss", null);
+            DateTime releaseDateTime = DateTime.ParseExact(releaseDate, "yyyy/M/d H:mm:ss", null);
+            DateTime lanuchDateTime = DateTime.ParseExact(lanuchDate, "yyyy/M/d H:mm:ss", null);
+            DateTime delayLanuchDateTime = DateTime.ParseExact(DelayLanuchDate, "yyyy/M/d H:mm:ss", null);
+            DateTime delayReleaseDateTime = DateTime.ParseExact(DelayReleaseDate, "yyyy/M/d H:mm:ss", null);
+            //向PB里面插入数据
+            foreach(string pb in pbNO)
+            {
+                var project = mdc.PbInfoes.Where(u => u.PBNo == pb
+                    ).FirstOrDefault();
+                project.ProjectID = projectID;
+                project.ShowPB = 1;
+                mdc.SaveChanges();
+            }
+            //向project里面插入数据
+            ProjectInfo projectInfo = new ProjectInfo() { ProjectID = projectID, LO = lo, MISStatus = status, IsLanuched = IsLanuched, CNPMId = cnpId, StartDate = startDateTime, ReleaseDate = releaseDateTime, DelayReleaseDate = delayReleaseDateTime, LanuchDate = lanuchDateTime, DelayLanuchDate = delayLanuchDateTime, EndDate = null };
+            mdc.ProjectInfoes.Add(projectInfo);
             mdc.SaveChanges();
             return result;
         }
