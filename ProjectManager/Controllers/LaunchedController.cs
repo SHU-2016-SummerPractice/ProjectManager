@@ -9,9 +9,14 @@ namespace ProjectManager.Controllers
 {
     public class LaunchedController : Controller
     {
+
         // GET: Launched
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Account/Login?returnUrl=/Launched/Index");
+            }
             ModelDbContext mdb = new ModelDbContext();
             IQueryable<ProjectInfo>  launcheds = mdb.ProjectInfoes;
             IEnumerable<ProjectInfo> launchedsQuery =from projectInfo in launcheds
