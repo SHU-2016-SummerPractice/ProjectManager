@@ -135,14 +135,6 @@
         var delayReleaseDate = $("#delay-release-date").val();
         var pbNO = {};
         var i = 0;
-        alert(CNPMId);
-        alert(status);
-        alert(IsLanuched);
-        alert(startDate);
-        alert(releaseDate);
-        alert(lanuchDate);
-        alert(delayLanuchDate);
-        alert(delayReleaseDate);
         $(".pb-NO").each(function () {
             pbNO[i] = $(this).val();
             i++;
@@ -153,16 +145,16 @@
             url: "/Project/AddProject",
             async: true,
             data: {
-                ProjectID:projectID,
+                ProjectID: projectID,
                 Lo: lo,
                 CNPMId: CNPMId,
                 status: status,
-                IsLanuched:IsLanuched,
+                IsLanuched: IsLanuched,
                 startDate: startDate,
                 releaseDate: releaseDate,
                 lanuchDate: lanuchDate,
                 DelayLanuchDate: delayLanuchDate,
-                DelayReleaseDate:delayReleaseDate,
+                DelayReleaseDate: delayReleaseDate,
                 pbNO: pbNO
             },
             success: function (result) {
@@ -172,7 +164,7 @@
             error: function (result) {
                 alert("添加失败！");
             }
-        })
-
+        });
     });
+
 });
