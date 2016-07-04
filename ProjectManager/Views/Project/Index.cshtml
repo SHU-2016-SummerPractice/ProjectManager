@@ -21,11 +21,9 @@
 <div id="main-panel">
     <div>
         @*左边状态栏*@
-        <div>
-            <h5>Project Status</h5>
-        </div>
+        <br />
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <img src="~/Content/img_file/project_red.png" alt="Release" class="pic" />
                 <a href="#" class="project-status">Release</a> &nbsp;@ViewBag.releaseCount
                 &nbsp;&nbsp;
@@ -38,9 +36,9 @@
                 <img src="~/Content/img_file/project_purple.png" alt="Alternate Text" class="pic" />
                 <a href="#" class="project-status">Lanuch</a> &nbsp;@ViewBag.lanuchCount
             </div>
-            <div id="add" class="col-sm-offset-1 col-sm-3">
+            <div id="add" class="col-sm-2 col-sm-offset-5">
                 @*两个按钮，用来添加PB和project*@
-                <a href="#" class="button button-3d button-action button-pill" data-toggle="modal" data-target="#exampleModal" id="open-add-project">Add Project</a>
+                <a href="#" class="button button-pill button-primary" data-toggle="modal" data-target="#exampleModal" id="open-add-project" style="margin:10px 0 0 0;position:relative;right:3px;">Add Project</a>
             </div>
         </div>
 
