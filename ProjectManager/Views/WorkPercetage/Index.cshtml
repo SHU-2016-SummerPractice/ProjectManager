@@ -47,85 +47,98 @@
 <div id="datatable-div" style="visibility: hidden">
     <table id="datatable" class="display" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th>Staff Id</th>
-                <th>Percentage</th>
-                <th>Project</th>
-                <th>Memo</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>Staff Id</th>
+            <th>Percentage</th>
+            <th>Project</th>
+            <th>Memo</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (Domain d in ViewBag.workPercetages)
+        @foreach (Domain d in ViewBag.workPercetages)
+        {
+            if (d.Percentage == 100)
             {
-                if (d.Percentage == 100)
-                {
-                    <tr>
-                        <td>@d.StaffId</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
-                                    @d.Percentage%
-                                </div>
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                @d.Percentage%
                             </div>
-                        </td>
-                        <td>@d.Project</td>
-                        <td>@d.Memo</td>
-                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
-                    </tr>
-                }
-                else if (d.Percentage >= 80)
-                {
-                    <tr>
-                        <td>@d.StaffId</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
-                                    @d.Percentage%
-                                </div>
-                            </div>
-                        </td>
-                        <td>@d.Project</td>
-                        <td>@d.Memo</td>
-                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
-                    </tr>
-                }
-                else if (d.Percentage >= 50)
-                {
-                    <tr>
-                        <td>@d.StaffId</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning  " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
-                                    @d.Percentage%
-                                </div>
-                            </div>
-                        </td>
-                        <td>@d.Project</td>
-                        <td>@d.Memo</td>
-                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
-                    </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td>@d.StaffId</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
-                                    @d.Percentage%
-                                </div>
-                            </div>
-                        </td>
-                        <td>@d.Project</td>
-                        <td>@d.Memo</td>
-                        <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
-                    </tr>
-                }
-
+                        </div>
+                    </td>
+                    <td>@d.Project</td>
+                    <td>@d.Memo</td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                </tr>
             }
+            else if (d.Percentage >= 80)
+            {
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                @d.Percentage%
+                            </div>
+                        </div>
+                    </td>
+                    <td>@d.Project</td>
+                    <td>@d.Memo</td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                </tr>
+            }
+            else if (d.Percentage >= 50)
+            {
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning  " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                @d.Percentage%
+                            </div>
+                        </div>
+                    </td>
+                    <td>@d.Project</td>
+                    <td>@d.Memo</td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@d.StaffId</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow=@d.Percentage aria-valuemin="0" aria-valuemax="100" style="width: @d.Percentage%;">
+                                @d.Percentage%
+                            </div>
+                        </div>
+                    </td>
+                    <td>@d.Project</td>
+                    <td>@d.Memo</td>
+                    <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#editModal" data-staffid="@d.StaffId" data-percentage="@d.Percentage" data-project="@d.Project" data-memo="@d.Memo">Edit</button></td>
+                </tr>
+            }
+
+        }
         </tbody>
     </table>
+
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Export to Excel <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="/Download/Project">Project</a></li>
+            <li><a href="/Download/WorkHour">WorkHour</a></li>
+            <li><a href="/Download/WorkPercetage">WorkPercetage</a></li>
+            <li><a href="/Download/Launched">Launched</a></li>
+        </ul>
+    </div>
+
 </div>
 
 

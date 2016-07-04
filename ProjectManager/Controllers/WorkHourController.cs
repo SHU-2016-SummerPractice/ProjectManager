@@ -13,7 +13,9 @@ namespace ProjectManager.Controllers
         // GET: WorkHour
         public ActionResult Index()
         {
-            return View();
+			if (!User.Identity.IsAuthenticated)
+				return Redirect("/Account/Login?returnUrl=/WorkHour/Index");
+			return View();
         }
 
 		public JsonResult JsonForHandson()
